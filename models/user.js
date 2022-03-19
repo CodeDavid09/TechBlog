@@ -17,13 +17,20 @@ User.init(
             type: DataTypes.INTEGER,
             allowNull: false,
             primaryKey: true,
-            autoIncrement: true
         },
         // define username 
         username: {
             type: DataTypes.STRING,
             allowNull: false,
             unique: true
+        },
+        email: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            unique: true,
+            validate: {
+                isEmail: true,
+            }
         },
         // define password 
         password: {
@@ -36,6 +43,10 @@ User.init(
         }
     },
     {
+        sequelize,
+        timestamps: false,
+        freezeTableName: true,
+        modelName: 'user',
         hooks: {
             // set up beforeCreate lifecycle "hook" functionality
             async beforeCreate(newUserData) {
@@ -49,11 +60,6 @@ User.init(
                 return updatedUserData;
             }
         },
-
-        sequelize,
-        timestamps: false,
-        freezeTableName: true,
-        modelName: 'user'
     }
 );
 
