@@ -4,7 +4,6 @@ const sequelize = require('../config/index');
 
 class Post extends Model { }
 
-// create fields for Post model
 Post.init(
     {
         id: {
