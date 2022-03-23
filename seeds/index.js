@@ -1,16 +1,10 @@
-// require seeds paths
-const userSeed = require('./commentSeed');
-const postSeed = require('./postSeed');
-const commentSeed = require('./userSeed');
+const sequelize = require("../config/index");
 
-const sequelize = require('../config/index');
-
-const seedAll = async() => {
-    // force: true adds a DROP TABLE IF EXISTS before trying to create the table
+const seedAll = async () => {
     await sequelize.sync({ force: true });
-    await userSeed();
-    await postSeed();
-    await commentSeed();
+    console.log("\n----- DATABASE SYNCED -----\n");
+
+
     process.exit(0);
 };
 
